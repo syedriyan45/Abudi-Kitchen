@@ -1637,27 +1637,8 @@
 
   }
 
-
-  /* =========================================================
-     INITIALIZE
-  ========================================================= */
-
-  // Wrap the Firestore listener once so the first snapshot does not notify.
-
-  // previousOrderIds is used by loadOrders after the first snapshot.
-  // Start empty; the listener will establish the initial set.
-
+  /* INITIALIZE */
+  loadOrders();
   loadAvailability();
 
-  // Ask for notification permission after the page is loaded.
-  if (
-    "Notification" in window &&
-    Notification.permission === "default"
-  ) {
-    setTimeout(() => Notification.requestPermission(), 1500);
-  }
-
 })();
-
-loadOrders();
-loadAvailability();
