@@ -1,7 +1,7 @@
 # ABUDI Kitchen - Firebase Fixed
 
 Files:
-- kitchen.html
+- index.html
 - kitchen.js
 
 The duplicate `previousOrderIds` declaration was removed.
