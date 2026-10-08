@@ -721,7 +721,7 @@
 
   }
 
-  function generateBill(orderId) {
+  async function generateBill(orderId) {
 
     const order =
       orders.find(
@@ -768,9 +768,18 @@
     // Billing is the final step of the order.
     if (order.status !== "completed") {
 
-      order.status = "completed";
+      try {
 
-      saveOrders();
+        await updateDoc(
+          doc(db, "orders", orderId),
+          { status: "completed" }
+        );
+
+      } catch (error) {
+
+        console.error("Firestore bill status update error:", error);
+
+      }
 
     }
 
@@ -1642,15 +1651,7 @@
      INITIALIZE
   ========================================================= */
 
-  let firstFirestoreSnapshot = true;
-
-  // Wrap the Firestore listener once so the first snapshot does not notify.
-  const originalLoadOrders = loadOrders;
-  // previousOrderIds is used by loadOrders after the first snapshot.
-  // Start empty; the listener will establish the initial set.
-  var previousOrderIds = new Set();
-
-  originalLoadOrders();
+  loadOrders();
   loadAvailability();
 
   // Ask for notification permission after the page is loaded.
