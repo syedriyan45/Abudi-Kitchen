@@ -1642,7 +1642,9 @@
      INITIALIZE
   ========================================================= */
 
-  loadOrders();
+  // Wrap the Firestore listener once so the first snapshot does not notify.
+  // previousOrderIds is used by loadOrders after the first snapshot.
+  // Start empty; the listener will establish the initial set.
   loadAvailability();
 
   // Ask for notification permission after the page is loaded.
@@ -1654,3 +1656,6 @@
   }
 
 })();
+
+loadOrders();
+loadAvailability();
