@@ -8,20 +8,23 @@
 
   <style>
     :root {
-      --background: #f7f4ef;
-      --surface: #ffffff;
-      --text: #241d18;
-      --text-dim: #756b63;
-      --line: #ddd5cc;
-      --copper: #a45b32;
+      /* ABUDI Kitchen — dark mode is the default */
+      --background: #090b0c;
+      --surface: #141719;
+      --surface-2: #1b1f21;
+      --text: #f6efe7;
+      --text-dim: #aaa19a;
+      --line: #303538;
+      --copper: #c8894b;
+      --copper-dark: #7d4727;
 
-      --new: #d97706;
-      --preparing: #2563eb;
-      --ready: #16a34a;
-      --completed: #6b7280;
+      --new: #f59e0b;
+      --preparing: #3b82f6;
+      --ready: #22c55e;
+      --completed: #737b84;
 
-      --available: #16a34a;
-      --unavailable: #dc2626;
+      --available: #22c55e;
+      --unavailable: #ef4444;
     }
 
     * {
@@ -33,6 +36,7 @@
       background: var(--background);
       color: var(--text);
       font-family: Arial, sans-serif;
+      min-height: 100vh;
     }
 
     button {
@@ -56,7 +60,7 @@
 
       padding: 18px 28px;
 
-      background: rgba(247, 244, 239, .96);
+      background: rgba(10, 12, 13, .96);
 
       border-bottom: 1px solid var(--line);
 
@@ -648,6 +652,246 @@
     }
 
     /* =====================================================
+       ADMIN LOGIN — coffee/wood style inspired by the supplied reference
+    ===================================================== */
+
+    .login-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: auto;
+      padding: 28px 18px;
+      background:
+        linear-gradient(rgba(5, 7, 8, .48), rgba(5, 7, 8, .62)),
+        url('login-bg.jpg') center / cover no-repeat;
+    }
+
+    .login-card {
+      position: relative;
+      width: min(100%, 430px);
+      padding: 34px 32px 30px;
+      border: 2px solid rgba(190, 128, 73, .65);
+      border-radius: 22px;
+      background: linear-gradient(145deg, rgba(249, 241, 225, .98), rgba(225, 211, 188, .97));
+      box-shadow: 0 28px 70px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.5);
+      color: #3a2a20;
+    }
+
+    .login-card::before {
+      content: 'ADMIN';
+      position: absolute;
+      top: -19px;
+      left: 30px;
+      padding: 10px 28px 13px;
+      border-radius: 0 0 13px 13px;
+      background: linear-gradient(180deg, #d7965f, #8e4e2d);
+      color: #fff0d4;
+      font-size: 19px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      box-shadow: 0 7px 12px rgba(0,0,0,.25);
+    }
+
+    .login-brand {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 22px;
+    }
+
+    .login-brand img {
+      width: 76px;
+      height: 76px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2px solid #a66a3d;
+      box-shadow: 0 6px 14px rgba(70,35,18,.25);
+    }
+
+    .login-brand h1 {
+      margin: 0;
+      color: #9a5a2e;
+      font-family: Georgia, serif;
+      font-size: clamp(28px, 7vw, 38px);
+      line-height: .95;
+    }
+
+    .login-brand p {
+      margin: 8px 0 0;
+      color: #4b4038;
+      font-family: Georgia, serif;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .login-subtitle {
+      margin: 0 0 18px;
+      color: #6d5d51;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .login-label {
+      display: block;
+      margin: 12px 0 7px;
+      color: #6b4b39;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .login-field {
+      width: 100%;
+      padding: 14px 13px;
+      border: 0;
+      border-bottom: 2px solid #a36a4c;
+      outline: none;
+      background: rgba(255,255,255,.16);
+      color: #30251e;
+      font-size: 16px;
+    }
+
+    .login-field:focus {
+      border-bottom-color: #4f719b;
+      box-shadow: 0 3px 0 rgba(79,113,155,.22);
+    }
+
+    .login-field::placeholder {
+      color: #81776e;
+    }
+
+    .login-options {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 16px 0 18px;
+      color: #684a3a;
+      font-size: 12px;
+    }
+
+    .login-options label {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .login-options input {
+      accent-color: #2d5d91;
+    }
+
+    .login-help {
+      opacity: .72;
+    }
+
+    .login-error {
+      min-height: 18px;
+      margin: 8px 0 4px;
+      color: #a21caf;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .login-button {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid #1d3f67;
+      border-radius: 8px;
+      background: linear-gradient(180deg, #2d5e91, #193e68);
+      color: #f7e7c8;
+      cursor: pointer;
+      font-family: Georgia, serif;
+      font-size: 19px;
+      font-weight: 900;
+      letter-spacing: .06em;
+      box-shadow: 0 6px 12px rgba(19,48,78,.3);
+    }
+
+    .login-button:hover {
+      filter: brightness(1.08);
+    }
+
+    .login-note {
+      margin: 16px 0 0;
+      color: #806c5d;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .logout-button {
+      border: 1px solid #553033;
+      background: #261719;
+      color: #fca5a5;
+      padding: 9px 13px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    /* Dark dashboard surfaces */
+    .order-count,
+    .availability-count,
+    .sound-button,
+    .filter-button,
+    .menu-card {
+      background: var(--surface);
+    }
+
+    .order-card {
+      background: var(--surface);
+      border-color: var(--line);
+      box-shadow: 0 10px 32px rgba(0,0,0,.22);
+    }
+
+    .customer {
+      background: #181c1e;
+    }
+
+    .table-badge {
+      background: #2a211b;
+    }
+
+    .notes {
+      background: #2b2416;
+      border-color: #5a4821;
+      color: #e9ca7a;
+    }
+
+    .main-tabs {
+      background: #0d1011;
+    }
+
+    .main-tab.active,
+    .filter-button.active {
+      background: var(--copper);
+      border-color: var(--copper);
+    }
+
+    @media (max-width: 650px) {
+      .login-card {
+        padding: 30px 22px 25px;
+      }
+
+      .login-brand img {
+        width: 64px;
+        height: 64px;
+      }
+
+      .login-brand h1 {
+        font-size: 29px;
+      }
+
+      .login-brand p {
+        font-size: 15px;
+      }
+    }
+
+    /* =====================================================
        MOBILE
     ===================================================== */
 
@@ -709,6 +953,41 @@
 
 <body>
 
+  <div id="loginScreen" class="login-screen">
+    <form id="loginForm" class="login-card">
+      <div class="login-brand">
+        <img src="abudi-logo.jpg" alt="Abudi Coffee Roaster">
+        <div>
+          <h1>Abudi</h1>
+          <p>Coffee Roaster</p>
+        </div>
+      </div>
+
+      <p class="login-subtitle">Kitchen Dashboard · Secure Admin Access</p>
+
+      <label class="login-label" for="loginUsername">Admin Username</label>
+      <input id="loginUsername" class="login-field" type="text"
+        placeholder="Admin Username" autocomplete="username" required>
+
+      <label class="login-label" for="loginPassword">Password</label>
+      <input id="loginPassword" class="login-field" type="password"
+        placeholder="Password" autocomplete="current-password" required>
+
+      <div class="login-options">
+        <label><input type="checkbox" checked> Remember me</label>
+        <span class="login-help">Admin access only</span>
+      </div>
+
+      <div id="loginError" class="login-error"></div>
+
+      <button class="login-button" type="submit">
+        LOGIN
+      </button>
+
+      <p class="login-note">ABUDI COFFEE ROASTERS · KITCHEN MANAGEMENT</p>
+    </form>
+  </div>
+
   <!-- =====================================================
        HEADER
   ====================================================== -->
@@ -745,6 +1024,15 @@
         type="button">
 
         🔔 Sound: On
+
+      </button>
+
+      <button
+        id="logoutButton"
+        class="logout-button"
+        type="button">
+
+        🚪 Logout
 
       </button>
 
